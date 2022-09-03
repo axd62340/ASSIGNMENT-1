@@ -1,0 +1,192 @@
+from sklearn.neighbors import KNeighborsClassifier   # importing KNN Classifier from sklearn
+from sklearn.model_selection import train_test_split  #  train_test_split to devide dataset into two parts
+import seaborn as sns  # to generate confusion_matrix diagram
+import pandas as pd  # for input dataset
+import matplotlib.pyplot as plt  # to display confusion_matrix
+from sklearn.metrics import confusion_matrix  # to get confusion_matrix
+
+
+def question1():
+    ages = [19, 22, 19, 24, 20, 25, 26, 24, 25, 24]
+    ages.sort()  # Sorting the List
+    min_age = ages[0]  # finding the min age
+    max_age = ages[-1]  # finding the max age
+    ages.append(min_age)
+    ages.append(max_age)
+    if len(ages) % 2 == 0:
+        # finding median of age in len is even
+        median_age = (ages[5]+ages[6])/2
+    else:
+        # finding median of age in len is odd
+        median_age = ages[5]
+    sum_age = 0
+    for age in ages:
+        sum_age = sum_age + age
+    average_age = sum_age/len(ages)    # finding average of age
+    range_of_ages = max_age - min_age  # finding range of age
+
+    print('minimum age: ', min_age)
+    print('maximum age: ', max_age)
+    print('median age', median_age)
+    print('average age', average_age)
+    print('range of the ages', range_of_ages)
+
+def question2():
+    dog = {}
+    dog['name'] = 'My Dog'; dog['color'] = 'White';dog['breed'] = 'Poodle'
+    dog['legs'] = 'medium size'; dog['age'] = '6 years'
+    print('Dog Dict', dog)   # dog dict
+    student = {}
+    student['first_name'] = 'Ramu'
+    student['last_name'] = 'Abc'
+    student['gender'] = 'Male'
+    student['age'] = '28'
+    student['marital_status'] = 'Single'
+    student['skills'] = ['Java', 'Python']
+    student['country'] = 'United States'
+    student['city'] = 'Warrensburg'
+    student['address'] = '116 W South St, Warrensburg, MO 64093, United States'
+    print('Student Dict', student)  # Student dict
+    length_student = len(student)  # length of student dict
+    skills_student = student['skills']
+    skills_student_type = type(skills_student)
+    print('Dog Dict\n\t', dog)
+    print('Student Dict\n\t', student)
+    print('length of the student dictionary: ', length_student)
+    print('value of skills and data type\n\t', skills_student, skills_student_type)
+    student['skills'].append('PHP')  # appending new skill
+    student['skills'].append('Dot Net')  # appending new skill
+    skills_student_modified = student['skills']  # getting modified skills
+    keys_student = list(student)  # getting student dict key as list
+    values_student = list(student.values())  # getting student dict values as list
+    keys_dog = list(dog)  # getting dog dict key as list
+    values_dog = list(dog.values()) # getting dog dict values as list
+    print('Modify the skills values\n\t', skills_student_modified)
+    print('dog dictionary keys as a list\n\t', keys_dog)
+    print('student dictionary keys as a list\n\t', keys_student)
+    print('dog dictionary values as a list\n\t', values_dog)
+    print('student dictionary values as a list\n\t', values_student)
+
+def question3():
+    brothers = ('raju', 'ramu', 'ravi', 'vinod')  # creating brothers
+    sisters = ('lakshmi', 'priya', 'anusha')  # creating sisters
+    siblings = brothers+sisters  # creating siblings
+    number_of_siblings = len(siblings)  # finding number of siblings
+    family_members = siblings + ('Venkateswarlu', 'Ravanamma')  # creating family_members
+    print('brothers\n\t', brothers)
+    print('sisters\n\t', sisters)
+    print('siblings\n\t', siblings)
+    print('number of siblings:', number_of_siblings)
+    print('family members\n\t', family_members)
+
+def question4():
+    it_companies = {'Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon'}
+    A = {19, 22, 24, 20, 25, 26}
+    B = {19, 22, 20, 25, 26, 24, 28, 27}
+    age = [22, 19, 24, 25, 26, 24, 25, 24]
+    print('IT companies\n', it_companies)
+    length_it_companies = len(it_companies)  # finding length of it_companies
+    print('length of IT companies:', length_it_companies)
+    it_companies.add('Twitter')  # adding twitter into it_companies
+    print('After adding Twitter IT companies\n', it_companies)
+    it_companies.update({'IBM', 'Infosys'})  # adding more it_companies
+    print('After adding Two more IT companies\n', it_companies)
+    it_companies.remove('Facebook')  # removing more it_companies
+    print('After Remove Facebook IT companies\n', it_companies)
+    print('Remove method removes the element from the set only if the element is present in the\n'
+          ' set Discard method removes the element but If the element is not present in the set,\n '
+          'then an error or exception is raised')
+    print('A join B\n', A.union(B))
+    print('A intersection B\n', A.intersection(B))
+    print('Is A subset of B: ', A.issubset(B))
+    print('Are A and B disjoint sets: ', A.isdisjoint(B))
+    print('Join A with B and B with A', A.union(B), B.union(A))
+    print('symmetric difference between A and B', A.symmetric_difference(B))
+    print('Deleting the sets completely\n')
+    A.clear(), B.clear()  # deleting elements from set
+    age_set = set(age)  # converting list to set
+    print('length of the list is {0} and the set is {1}'.format(len(age), len(age_set)))
+
+def question5():
+    PI = 3.14
+    _radius_of_circle = int(input('Enter Radius'))
+    # calculating area of circle
+    _area_of_circle_ = PI * _radius_of_circle * _radius_of_circle
+    # calculating circumference of circle
+    _circum_of_circle_ = 2 * PI * _radius_of_circle
+    print("Area of a circle = %.2f" % _area_of_circle_)
+    print("Circumference of a Circle = %.2f" % _circum_of_circle_)
+
+def question6():
+    my_sentence = "I am a teacher and I love to inspire and teach people"
+    my_words_list = my_sentence.split(' ')  # split the sentence
+    my_words_set = set(my_words_list)  # converting list to set
+    print('unique words have been used in the sentence are ', len(my_words_set))
+
+def question7():
+    # using tab escape sequence
+    print('Name\t\tAge\t\tCountry\t\tCity\nAsabeneh\t250\t\tFinland\t\tHelsinki')
+
+def question8():
+    radius = 10
+    area = 3.14 * radius ** 2
+    # String formatting
+    print('The area of a circle with radius {0} is {1} meters square.'.format(radius, area))
+
+def question9():
+    # asking number of students
+    N = int(input('Enter Number of Students'))
+    L1 = []
+    for i in range(N):
+        L1.append(int(input('Enter {} student weight'.format(i+1))))
+    print(L1)
+    K1 = []
+    for L in L1:
+        K1.append(round(L*0.45359237,2))  # converting lbs to Kgs
+    print(K1)
+
+def question10():
+    data = [[1, 0], [2, 0], [3, 1], [6, 1], [6, 1], [7, 0], [10, 0], [11, 0]]  #Tacking Dataset
+    df = pd.DataFrame(data, columns=['feature', 'labeled'])
+    print(df)
+    y = df['labeled']
+    X = df.drop(['labeled'], axis=1)
+    # Split Dataset for training and testing
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=50)
+    knn = KNeighborsClassifier(n_neighbors=3)  # creating KNN
+    knn.fit(X_train, y_train)  # Training KNN model
+    preds = knn.predict(X_test)  # Predicting
+    print(X_test)
+    print('Predictions')
+    print(preds)
+    score = knn.score(X_test, y_test)  # finding the score
+    print('accuracy', score)
+    cm = confusion_matrix(y_test, preds)  # Drawing Confusion Matrix
+    print(cm)
+    sns.heatmap(cm, annot=True)
+    plt.show()
+
+if __name__ == '__main__':
+    user_option = int(input('Enter Question Number'))
+    if user_option == 1:
+        question1()
+    elif user_option == 2:
+        question2()
+    elif user_option == 3:
+        question3()
+    elif user_option == 4:
+        question4()
+    elif user_option == 5:
+        question5()
+    elif user_option == 6:
+        question6()
+    elif user_option == 7:
+        question7()
+    elif user_option == 8:
+        question8()
+    elif user_option == 9:
+        question9()
+    elif user_option == 10:
+        question10()
+    else:
+        print('Invalid Question Number')
